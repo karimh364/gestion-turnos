@@ -1,0 +1,14 @@
+const express = require('express');
+const router = express.Router();
+const auth = require('../controllers/authController');
+const registro = require('../controllers/registroController');
+const verificacion = require('../controllers/verificacionController');
+const cuenta = require('../controllers/cuentaController');
+router.post('/login', auth.login);
+router.post('/registro/paciente', registro.registrarPaciente);
+router.post('/registro/medico', registro.registrarMedico);
+router.get('/verificar-email', verificacion.verificarEmail);
+router.post('/recuperar-password', cuenta.solicitarRecuperacion);
+router.post('/restablecer-password', cuenta.restablecerPassword);
+router.get('/sesion', require('../middlewares/authMiddleware'), auth.sesion);
+module.exports = router;

@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Gestión de Turnos Médicos</title>
+        <link rel="stylesheet" href="css/estilos.css" />
+    </head>
+    <body>
+        <main class="contenedor">
+            <section class="tarjeta">
+                <h1>Gestión de Turnos Médicos</h1>
+                <nav class="accesos" aria-label="Acceso a la cuenta">
+                    <a href="#login" data-panel="login">Ingresar</a>
+                    <a href="#registro" data-panel="registro">Crear cuenta</a>
+                    <a href="#recuperar" data-panel="recuperar">Recuperar contraseña</a>
+                </nav>
+                <section id="panelLogin">
+                    <h2>Iniciar sesión</h2>
+                    <form id="formLogin">
+                        <label for="email">Correo electrónico</label>
+                        <input
+                            type="email"
+                            id="email"
+                            name="email"
+                            autocomplete="username"
+                            required
+                            maxlength="100"
+                        />
+                        <label for="password">Contraseña</label>
+                        <input
+                            type="password"
+                            id="password"
+                            name="password"
+                            autocomplete="current-password"
+                            required
+                        />
+                        <button type="submit">Iniciar sesión</button>
+                    </form>
+                </section>
+                <section id="panelRegistro" hidden>
+                    <h2>Crear cuenta</h2>
+                    <form id="formRegistro">
+                        <label for="tipoRegistro">Tipo de cuenta</label>
+                        <select id="tipoRegistro">
+                            <option value="paciente">Paciente</option>
+                            <option value="medico">Médico con matrícula registrada</option>
+                        </select>
+                        <div id="datosPaciente" class="campos">
+                            <label for="dniRegistro">DNI</label
+                            ><input
+                                id="dniRegistro"
+                                type="number"
+                                min="1"
+                                max="2147483647"
+                                required
+                            />
+                            <label for="nombreRegistro">Nombre</label
+                            ><input
+                                id="nombreRegistro"
+                                maxlength="50"
+                                required
+                                autocomplete="given-name"
+                            />
+                            <label for="apellidoRegistro">Apellido</label
+                            ><input
+                                id="apellidoRegistro"
+                                maxlength="50"
+                                required
+                                autocomplete="family-name"
+                            />
+                            <label for="nacimientoRegistro">Fecha de nacimiento</label
+                            ><input id="nacimientoRegistro" type="date" required />
+                        </div>
+                        <div id="datosMedico" class="campos" hidden>
+                            <label for="matriculaRegistro">Matrícula</label
+                            ><input
+                                id="matriculaRegistro"
+                                type="number"
+                                min="1"
+                                max="2147483647"
+                                required
+                                disabled
+                            />
+                        </div>
+                        <label for="emailRegistro">Correo electrónico</label
+                        ><input
+                            id="emailRegistro"
+                            type="email"
+                            maxlength="50"
+                            autocomplete="email"
+                            required
+                        />
+                        <label for="passwordRegistro">Contraseña (mínimo 8 caracteres)</label
+                        ><input
+                            id="passwordRegistro"
+                            type="password"
+                            minlength="8"
+                            maxlength="72"
+                            autocomplete="new-password"
+                            required
+                        />
+                        <button type="submit">Registrarme</button>
+                    </form>
+                </section>
+                <section id="panelRecuperar" hidden>
+                    <h2>Recuperar contraseña</h2>
+                    <p>Ingresá el correo de tu cuenta para solicitar un enlace temporal.</p>
+                    <form id="formRecuperar">
+                        <label for="emailRecuperar">Correo electrónico</label
+                        ><input
+                            id="emailRecuperar"
+                            type="email"
+                            maxlength="100"
+                            required
+                            autocomplete="email"
+                        />
+                        <button type="submit">Enviar enlace</button>
+                    </form>
+                </section>
+                <p id="mensaje" role="status" aria-live="polite"></p>
+            </section>
+        </main>
+        <script src="js/api.js"></script>
+        <script src="js/app.js"></script>
+    </body>
+</html>

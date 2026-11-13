@@ -1,0 +1,18 @@
+# Dependencias instaladas localmente
+node_modules/
+
+# Configuración privada; solo se publica la plantilla vacía
+.env
+.env.*
+!.env.example
+
+# Resultados generados y respaldos locales
+backend/tests/resultado-*.json
+.respaldo-*/
+*.log
+*.zip
+
+# Archivos del sistema y editores
+.DS_Store
+Thumbs.db
+*.swp

@@ -1,0 +1,16 @@
+const express = require('express');
+const router = express.Router();
+const c = require('../controllers/turnoController');
+const validar = require('../middlewares/turnoValidator');
+const token = require('../middlewares/authMiddleware');
+const rol = require('../middlewares/autorizarRol');
+router.use(token);
+router.get('/', c.obtenerTurnos);
+router.get('/paciente/:dni', rol(1, 3), c.obtenerTurnosPorPaciente);
+router.get('/:id', c.obtenerTurnoPorId);
+router.post('/', rol(1, 3), validar, c.crearTurno);
+router.put('/:id', rol(1, 3), validar, c.actualizarTurno);
+router.patch('/:id/cancelar', rol(1, 3), c.cancelarTurno);
+router.patch('/:id/confirmar', rol(1, 2, 3), c.confirmarTurno);
+router.delete('/:id', rol(1), c.eliminarTurno);
+module.exports = router;

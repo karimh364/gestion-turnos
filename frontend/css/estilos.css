@@ -1,0 +1,289 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #f4f4f4;
+    color: #222;
+}
+
+.contenedor {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.tarjeta {
+    width: 100%;
+    max-width: 420px;
+    padding: 32px;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 18px #00000015;
+}
+
+h1 {
+    margin-top: 0;
+    color: #002855;
+    font-size: 26px;
+}
+
+.tarjeta > p {
+    color: #666;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 24px;
+}
+
+input {
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 16px;
+    margin-bottom: 10px;
+}
+
+button {
+    padding: 13px;
+    border: none;
+    border-radius: 6px;
+    background: #002855;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #004080;
+}
+
+button:disabled {
+    opacity: 0.6;
+    cursor: wait;
+}
+
+#mensaje {
+    overflow-wrap: anywhere;
+    margin-bottom: 0;
+}
+
+.dashboard {
+    display: flex;
+    min-height: 100vh;
+}
+
+.sidebar {
+    width: 230px;
+    flex-shrink: 0;
+    padding: 24px;
+    background: #002855;
+    color: white;
+}
+
+.sidebar h2 {
+    margin-top: 0;
+    font-size: 22px;
+}
+
+.sidebar nav {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.sidebar a {
+    padding: 12px;
+    border-radius: 6px;
+    color: white;
+    text-decoration: none;
+}
+
+.sidebar a:hover,
+.sidebar a.activo {
+    background: #004080;
+}
+
+.sidebar button {
+    margin-top: 16px;
+    border: 1px solid #ffffff66;
+    background: transparent;
+}
+
+.sidebar button:hover {
+    background: #004080;
+}
+
+.contenido {
+    flex: 1;
+    min-width: 0;
+    padding: 32px;
+}
+
+.encabezado p {
+    color: #666;
+}
+
+.bienvenida,
+.seccion-turnos {
+    margin-top: 24px;
+    padding: 24px;
+    border-radius: 12px;
+    background: white;
+}
+
+.tabla-contenedor {
+    overflow-x: auto;
+}
+
+.tabla-turnos {
+    width: 100%;
+    border-collapse: collapse;
+    white-space: normal;
+}
+
+.tabla-turnos td:nth-child(2),
+.tabla-turnos td:nth-child(3) {
+    white-space: nowrap;
+}
+
+.tabla-turnos th,
+.tabla-turnos td {
+    padding: 12px;
+    border-bottom: 1px solid #ddd;
+    text-align: left;
+}
+
+.tabla-turnos th {
+    background: #eaf0f7;
+    color: #002855;
+}
+
+.tabla-turnos th:first-child {
+    width: 60px;
+}
+
+.tabla-turnos th:nth-child(2) {
+    min-width: 110px;
+}
+
+.tabla-turnos tbody tr:nth-child(even) {
+    background: #f7f9fc;
+}
+
+#mensajeTurnos.error {
+    color: #b00020;
+}
+
+@media (max-width: 700px) {
+    .dashboard {
+        flex-direction: column;
+    }
+
+    .sidebar {
+        width: 100%;
+    }
+
+    .contenido {
+        padding: 20px;
+    }
+}
+
+[hidden] {
+    display: none !important;
+}
+select {
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font: inherit;
+    background: white;
+    max-width: 100%;
+}
+.accesos {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-bottom: 24px;
+}
+.accesos a {
+    color: #002855;
+}
+.campos,
+.campo {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.formulario-agenda {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px;
+    padding: 20px 0;
+}
+.formulario-agenda h3,
+.ancho-completo {
+    grid-column: 1 / -1;
+}
+.formulario-agenda input {
+    width: 100%;
+    margin-bottom: 0;
+}
+.barra,
+.botones {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    align-items: center;
+}
+.barra {
+    justify-content: space-between;
+}
+.secundario {
+    background: #e6ebf1;
+    color: #002855;
+}
+.secundario:hover {
+    background: #d2dbe5;
+}
+.confirmacion {
+    padding: 16px;
+    margin: 16px 0;
+    border: 1px solid #ccd5df;
+    border-radius: 6px;
+}
+.confirmacion select {
+    margin: 8px 0 16px;
+}
+.acciones {
+    white-space: normal;
+    min-width: 200px;
+}
+.acciones button {
+    font-size: 14px;
+    padding: 8px;
+    margin: 3px;
+}
+.error {
+    color: #b00020 !important;
+}
+#mensajeTurnos,
+#mensajePaciente,
+#mensajePanel {
+    overflow-wrap: anywhere;
+}
+@media (max-width: 700px) {
+    .formulario-agenda {
+        grid-template-columns: minmax(0, 1fr);
+    }
+    .tarjeta {
+        padding: 24px;
+    }
+}

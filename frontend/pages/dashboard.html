@@ -1,0 +1,169 @@
+<!doctype html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Panel | Gestión de Turnos</title>
+        <link rel="stylesheet" href="../css/estilos.css" />
+    </head>
+    <body>
+        <div class="dashboard">
+            <aside class="sidebar">
+                <h2>Gestión de Turnos</h2>
+                <nav aria-label="Panel">
+                    <a href="#inicio" id="enlaceInicio" class="activo">Inicio</a
+                    ><a href="#turnos" id="enlaceTurnos">Turnos</a
+                    ><a href="#datos" id="enlaceDatos">Datos del paciente</a
+                    ><button id="cerrarSesion" type="button">Cerrar sesión</button>
+                </nav>
+            </aside>
+            <main class="contenido">
+                <header class="encabezado">
+                    <h1>Panel principal</h1>
+                    <p id="datosUsuario">Cargando usuario...</p>
+                </header>
+                <p id="mensajePanel" role="status" aria-live="polite"></p>
+                <section id="inicio" class="bienvenida">
+                    <h2>Bienvenida/o al sistema</h2>
+                    <p>
+                        En Turnos podés consultar la agenda y realizar las operaciones habilitadas
+                        para tu cuenta.
+                    </p>
+                </section>
+                <section id="turnos" class="seccion-turnos" hidden>
+                    <div class="barra">
+                        <h2 id="tituloTurnos">Gestión de turnos</h2>
+                        <button id="nuevoTurno" type="button" disabled>Reservar turno</button>
+                    </div>
+                    <p id="mensajeTurnos" role="status" aria-live="polite"></p>
+                    <form id="formTurno" class="formulario-agenda" hidden>
+                        <h3 id="tituloFormulario">Reservar turno</h3>
+                        <div class="campo">
+                            <label for="turnoPaciente">Paciente</label
+                            ><select id="turnoPaciente" required></select>
+                        </div>
+                        <div class="campo">
+                            <label for="turnoPractica">Práctica</label
+                            ><select id="turnoPractica" required></select>
+                        </div>
+                        <div class="campo">
+                            <label for="turnoMedico">Médico</label
+                            ><select id="turnoMedico" required></select>
+                        </div>
+                        <div class="campo">
+                            <label for="turnoEquipo">Equipo</label
+                            ><select id="turnoEquipo" required></select>
+                        </div>
+                        <p id="horariosMedico" class="ancho-completo"></p>
+                        <div class="campo">
+                            <label for="turnoFecha">Fecha</label
+                            ><input id="turnoFecha" type="date" required />
+                        </div>
+                        <div class="campo">
+                            <label for="turnoHora">Hora</label
+                            ><input id="turnoHora" type="time" step="60" required />
+                        </div>
+                        <div class="campo">
+                            <label for="turnoMedio">Medio solicitado</label
+                            ><select id="turnoMedio">
+                                <option>Web</option>
+                                <option>Teléfono</option>
+                                <option>Email</option>
+                                <option>WhatsApp</option>
+                            </select>
+                        </div>
+                        <div class="botones ancho-completo">
+                            <button type="submit" id="guardarTurno">Reservar turno</button
+                            ><button type="button" class="secundario" id="descartarTurno">
+                                Descartar
+                            </button>
+                        </div>
+                    </form>
+                    <div id="confirmacionAccion" class="confirmacion" hidden>
+                        <p id="textoAccion"></p>
+                        <div id="campoMedioConfirmacion">
+                            <label for="medioConfirmacion">Medio de confirmación</label
+                            ><select id="medioConfirmacion">
+                                <option>Email</option>
+                                <option>Teléfono</option>
+                            </select>
+                        </div>
+                        <div class="botones">
+                            <button type="button" id="aceptarAccion">Continuar</button
+                            ><button type="button" class="secundario" id="descartarAccion">
+                                Volver
+                            </button>
+                        </div>
+                    </div>
+                    <div class="tabla-contenedor">
+                        <table
+                            id="tablaTurnos"
+                            class="tabla-turnos"
+                            aria-labelledby="tituloTurnos"
+                            hidden
+                        >
+                            <thead>
+                                <tr>
+                                    <th scope="col">ID</th>
+                                    <th scope="col">Fecha</th>
+                                    <th scope="col">Hora</th>
+                                    <th scope="col">Paciente</th>
+                                    <th scope="col">Práctica</th>
+                                    <th scope="col">Médico</th>
+                                    <th scope="col">Equipo</th>
+                                    <th scope="col">Estado</th>
+                                    <th scope="col">Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody id="cuerpoTurnos"></tbody>
+                        </table>
+                    </div>
+                </section>
+                <section id="datos" class="seccion-turnos" hidden>
+                    <h2>Datos del paciente</h2>
+                    <p>Completá o corregí los datos personales y de contacto.</p>
+                    <form id="formPaciente" class="formulario-agenda">
+                        <div class="campo ancho-completo">
+                            <label for="perfilPaciente">Paciente</label
+                            ><select id="perfilPaciente" required></select>
+                        </div>
+                        <div class="campo">
+                            <label for="perfilNombre">Nombre</label
+                            ><input id="perfilNombre" maxlength="50" required />
+                        </div>
+                        <div class="campo">
+                            <label for="perfilApellido">Apellido</label
+                            ><input id="perfilApellido" maxlength="50" required />
+                        </div>
+                        <div class="campo">
+                            <label for="perfilNacimiento">Fecha de nacimiento</label
+                            ><input id="perfilNacimiento" type="date" required />
+                        </div>
+                        <div class="campo">
+                            <label for="perfilTelefono">Teléfono</label
+                            ><input id="perfilTelefono" type="tel" maxlength="15" />
+                        </div>
+                        <div class="campo">
+                            <label for="perfilEmail">Correo electrónico</label
+                            ><input id="perfilEmail" type="email" maxlength="50" />
+                        </div>
+                        <div class="campo">
+                            <label for="perfilObra">Obra social</label
+                            ><select id="perfilObra"></select>
+                        </div>
+                        <div class="campo">
+                            <label for="perfilAfiliado">Número de afiliado</label
+                            ><input id="perfilAfiliado" type="number" min="1" max="2147483647" />
+                        </div>
+                        <div class="botones ancho-completo">
+                            <button type="submit">Guardar datos</button>
+                        </div>
+                    </form>
+                    <p id="mensajePaciente" role="status" aria-live="polite"></p>
+                </section>
+            </main>
+        </div>
+        <script src="../js/api.js"></script>
+        <script src="../js/dashboard.js"></script>
+    </body>
+</html>

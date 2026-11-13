@@ -1,0 +1,43 @@
+const db = require('../config/database');
+const bcrypt = require('bcryptjs');
+
+async function verificarCredenciales(email, password) {
+    const [usuarios] = await db.execute(
+        `SELECT id_usuario, email, password_hash, id_rol, activo, email_verificado, dni_paciente, matricula_medico
+         FROM usuario
+         WHERE email = ?`,
+        [email]
+    );
+
+    // Verificar que el usuario exista y esté activo
+    if (usuarios.length === 0 || usuarios[0].activo !== 1) {
+        return null;
+    }
+
+    const usuario = usuarios[0];
+
+    // Comparar la contraseña ingresada con el hash guardado
+    const passwordValida = await bcrypt.compare(password, usuario.password_hash);
+
+    if (!passwordValida) {
+        return null;
+    }
+
+    // La cuenta debe tener el correo verificado antes de iniciar sesión
+    if (usuario.email_verificado !== 1) {
+        return { error: 'EMAIL_NO_VERIFICADO' };
+    }
+
+    // Devolver solamente los datos que necesitamos
+    return {
+        id_usuario: usuario.id_usuario,
+        email: usuario.email,
+        id_rol: usuario.id_rol,
+        dni_paciente: usuario.dni_paciente,
+        matricula_medico: usuario.matricula_medico
+    };
+}
+
+module.exports = {
+    verificarCredenciales
+};
